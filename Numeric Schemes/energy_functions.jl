@@ -49,11 +49,11 @@ function modified_energy_H(P,Q)
     Temp3=-gra_q_H(Q[:,k])
     H[1]=H[1]+1/4*(U_energy(Q,2)-2*U_energy(Q,1)+U_energy(Qneg,1))
     for i=1:N
-            if i!=2
+            
                 H[k]=H[k]+1/6*h*P[3*i-2:3*i,k]'*1/masses[i]*0.5*(Temp1[3*i-2:3*i]-Temp2[3*i-2:3*i])
                 H[k]=H[k]+5/24*h^2*Temp3[3*i-2:3*i]'*1/masses[i]*Temp3[3*i-2:3*i]
                 H[k]=H[k]+1/12*h^2*Temp3[3*i-2:3*i]'*1/masses[i]*(Temp1[3*i-2:3*i]-2*Temp3[3*i-2:3*i]+Temp2[3*i-2:3*i])
-            end
+            
     end
 
     for k=2:Nh-1
@@ -62,11 +62,11 @@ function modified_energy_H(P,Q)
         Temp3=-gra_q_H(Q[:,k])
         H[k]=H[k]+1/4*(U_energy(Q,k+1)-2*U_energy(Q,k)+U_energy(Q,k-1))
         for i=1:N
-            if i!=2
+            
                 H[k]=H[k]+1/6*h*P[3*i-2:3*i,k]'*1/masses[i]*0.5*(Temp1[3*i-2:3*i]-Temp2[3*i-2:3*i])
                 H[k]=H[k]+5/24*h^2*Temp3[3*i-2:3*i]'*1/masses[i]*Temp3[3*i-2:3*i]
                 H[k]=H[k]+1/12*h^2*Temp3[3*i-2:3*i]'*1/masses[i]*(Temp1[3*i-2:3*i]-2*Temp3[3*i-2:3*i]+Temp2[3*i-2:3*i])
-            end
+            
         end
     end
     return H
