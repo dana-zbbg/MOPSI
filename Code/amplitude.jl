@@ -8,7 +8,7 @@ Q0 = initial_positions[1:3*N] #sun and first planet
 P0 = initial_moments[1:3*N]
 
 N_amp = 20 #nb points pour tracer amplitude
-total_time = 10000 #doit suffire pour avoir au moins une periode
+total_time = 100 #doit suffire pour avoir au moins une periode
 list_h = [i*5 for i=1:N_amp]
 list_Nh = zeros(Int, N_amp)
 for i=1:N_amp

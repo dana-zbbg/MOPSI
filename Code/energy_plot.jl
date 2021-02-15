@@ -21,7 +21,7 @@ plot(time_array, H_Verlet_modified, label = "Verlet modified energy")
 QN_Sym, PN_Sym = Symplectic(h, Nh, N, Q0, P0)
 H_Sym = energy_H(PN_Sym, QN_Sym, Nh)
 plot(time_array, H_Sym, label = "Symplectic")
-H_Symplectic_modified = analytic_modified_energy_H(PN_Verlet, QN_Verlet,h,Nh)
+H_Symplectic_modified = analytic_EE_modified_energy_H(PN_Sym, QN_Sym,h,Nh)
 plot(time_array, H_Symplectic_modified, label = "Symplectic modified energy")
 
 
@@ -30,12 +30,6 @@ plot(time_array, H_Symplectic_modified, label = "Symplectic modified energy")
 QN_Imp, PN_Imp = Implicite_Euler(h, Nh, N, Q0, P0)
 H_Imp = energy_H(PN_Imp, QN_Imp, Nh)
 plot(time_array, H_Imp, label = "Implicit Euler")
-
-
-# Implicite_milieu
-QN_Imp_m, PN_Imp_m = implicite_milieu(h, Nh, N, Q0, P0)
-H_Imp_m = energy_H(PN_Imp_m, QN_Imp_m, Nh)
-plot(time_array, H_Imp_m, label = "Implicite milieu")
 
 
 # Explicit
