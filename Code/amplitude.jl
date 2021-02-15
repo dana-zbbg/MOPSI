@@ -82,4 +82,26 @@ function plot_amplitude_modified_energy(N_amp)
     title("Symplectic")
 end
 
+
+
+function plot_amplitude_modified_energy_V(N_amp)
+    list_amplitudes = zeros(N_amp)
+    list_log_h = zeros(N_amp)
+
+    for i=1:N_amp
+        h = list_h[i]
+        Nh = list_Nh[i]
+        QN, PN = Symplectic(h, Nh, N, Q0, P0)
+        H = analytic_modified_energy_H(PN, QN, h, Nh)
+        list_amplitudes[i] = log(maximum(H) - minimum(H))
+        list_log_h[i] = log(list_h[i])
+    end
+
+    plot(list_log_h, list_amplitudes, label = "log amplitude modified energy", marker =".")
+    xlabel("log time step")
+    legend()
+    title("Verlet")
+end
+
+
 plot_amplitude_modified_energy(N_amp)
