@@ -26,14 +26,14 @@ plot(time_array, H_Symplectic_modified, label = "Symplectic modified energy")
 
 
 
-# Implicite
-QN_Imp, PN_Imp = Implicite_Euler(h, Nh, N, Q0, P0)
+# Implicit
+QN_Imp, PN_Imp = Implicit_Euler(h, Nh, N, Q0, P0)
 H_Imp = energy_H(PN_Imp, QN_Imp, Nh,N)
 plot(time_array, H_Imp, label = "Implicit Euler")
 
 
 # Explicit
-QN_Exp, PN_Exp = Explicite_Euler(h, Nh, N, Q0, P0)
+QN_Exp, PN_Exp = Explicit_Euler(h, Nh, N, Q0, P0)
 H_Exp = energy_H(PN_Exp, QN_Exp, Nh,N)
 plot(time_array, H_Exp, label = "Explicit Euler")
 

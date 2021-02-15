@@ -5,8 +5,8 @@ include("variables_initial_conditions.jl")
 include("potential_V_function_f.jl")
 
 # NUMERIC SCHEMES
-include("Explicite_Euler.jl")
-include("Implicite_Euler.jl")
+include("Explicit_Euler.jl")
+include("Implicit_Euler.jl")
 include("RK_4.jl")
 include("Symplectic.jl")
 include("Verlet.jl")

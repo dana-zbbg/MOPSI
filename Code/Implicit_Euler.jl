@@ -1,7 +1,7 @@
-##Euler Implicite Scheme
+##Implicit Euler Scheme
 ##solve by explicit euler for time span h, Nh iterations,
 ##initialised at position Q0 at movement quantity P0
-function Implicite_Euler(h, Nh, N, Q0, P0, eps = 10e-4)
+function Implicit_Euler(h, Nh, N, Q0, P0, eps = 10e-4)
     QN = zeros(3*N,Nh) #positions tq Q[3*i-2:3*i,j] = composantes de la position de la particule i à iteration j
     PN = zeros(3*N,Nh) #quantite de mouvement tq P[3*i-2:3*i,j] = composantes de quantite mvt de la particule i à interation j
     Y = zeros(6*N) #vector (Q,P) at time n
@@ -11,7 +11,7 @@ function Implicite_Euler(h, Nh, N, Q0, P0, eps = 10e-4)
     Z1 = zeros(6*N)
     for i= 1:Nh
         ## we find Z1 : an approximation of Y at time i+1
-        println(i)
+        #println(i)
         ZInit = Y + h*f(Y, N)
         Stop_condition = eps*norm(ZInit)
         Z0 = ZInit
@@ -21,8 +21,8 @@ function Implicite_Euler(h, Nh, N, Q0, P0, eps = 10e-4)
             Z0 = Z1
             Z1 = Y+h*f(Z0, N)
             j+=1
-            print("iter ")
-            println(j)
+            #print("iter ")
+            #println(j)
         end
         Y = Y+h*f(Z1, N) ##euler implicite
         QN[:,i] = Y[1:3*N] ##storage of positons at time i in QN
