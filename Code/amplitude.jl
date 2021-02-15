@@ -103,5 +103,7 @@ function plot_amplitude_modified_energy_Verlet(N_amp)
     title("Verlet")
 end
 
-
+figure()
+plot_amplitude_modified_energy_Symplectic(N_amp)
+figure()
 plot_amplitude_modified_energy_Verlet(N_amp)
