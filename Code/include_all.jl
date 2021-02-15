@@ -1,5 +1,5 @@
 # INITIAL CONDITIONS
-include("variables_initial_conditions")
+include("variables_initial_conditions.jl")
 
 # GRADIENT AND F
 include("potential_V_function_f.jl")

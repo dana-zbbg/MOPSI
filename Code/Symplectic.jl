@@ -8,8 +8,8 @@ function Symplectic(h, Nh, N, Q0, P0)
     Y[1:3*N] = Q0
     Y[3*N+1:6*N] = P0
     for i= 1:Nh
-        Y[3*N+1:6*N] = Y[3*N+1:6*N] - h*gra_q_H(Y[1:3*N])
-        Y[1:3*N] = Y[1:3*N] + h*gra_p_H(Y[3*N+1:6*N])
+        Y[3*N+1:6*N] = Y[3*N+1:6*N] - h*gra_q_H(Y[1:3*N],N)
+        Y[1:3*N] = Y[1:3*N] + h*gra_p_H(Y[3*N+1:6*N],N)
 
         QN[:,i] = Y[1:3*N] ##storage of positons at time i in QN
         PN[:,i] = Y[3*N+1:6*N] ##storage of quantity of movement at time i in PN

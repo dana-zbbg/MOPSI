@@ -1,7 +1,7 @@
 include("include_all.jl")
 
 h=10
-Nh=4000
+Nh=40
 
 time_array = [h*i for i=1:Nh]
 

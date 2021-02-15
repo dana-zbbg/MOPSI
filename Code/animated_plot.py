@@ -92,11 +92,6 @@ def update(num):
     ln6.set_3d_properties(QN[3*5+2, :num*skip])
 
 
-
-# lines initialisation
-
-
-
 # Setting the axes properties
 
 

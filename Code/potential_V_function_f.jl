@@ -13,10 +13,9 @@ end
 
 
 ##\gradient_q H
-function gra_q_H(Q)
-    K=N
+function gra_q_H(Q,N)
     Gra_q=zeros(size(Q))
-    for k=1:K
+    for k=1:N
         Gra_q[(3*k-2):(3*k)]=gradient_V(k, Q, N)
     end
     return Gra_q
@@ -24,10 +23,9 @@ end
 
 
 ##\gradient_p H
-function gra_p_H(P)
-    K=N
+function gra_p_H(P,N)
     Gra_p=zeros(size(P))
-    for k=1:K
+    for k=1:N
         Gra_p[(3*k-2):(3*k)]=1/masses[k]*P[(3*k-2):(3*k)]
     end
     return Gra_p
