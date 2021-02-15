@@ -1,13 +1,12 @@
 import numpy as np
 import matplotlib.pyplot as plt
-#from matplotlib.animation import FuncAnimation, PillowWriter
 from matplotlib import animation
 import mpl_toolkits.mplot3d.axes3d as p3
 import os
 import csv
 
-path_animation = 'C:/Users/Audre/Documents/Ponts/2A/S1/MOPSI/MOPSI_simulation_solar_system/figures/animated'
-path_CSV = 'C:/Users/Audre/Documents/Ponts/2A/S1/MOPSI/MOPSI_simulation_solar_system'
+path_animation = 'C:/Users/Audre/Documents/Ponts/2A/S1/MOPSI/clean_code/MOPSI/Figures/animated'
+path_CSV = 'C:/Users/Audre/Documents/Ponts/2A/S1/MOPSI/clean_code/MOPSI/Ressources'
 
 
 particules = ["Sun", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto"]
@@ -18,7 +17,7 @@ Nh = 5000
 N_anim = 1000
 
 
-file_CSV = open('C:/Users/Audre/Documents/Ponts/2A/S1/MOPSI/MOPSI_simulation_solar_system/explicit.csv')
+file_CSV = open('C:/Users/Audre/Documents/Ponts/2A/S1/MOPSI/clean_code/MOPSI/Ressources/explicit.csv')
 data_CSV = csv.reader(file_CSV)
 list_CSV = list(data_CSV)
 
@@ -103,99 +102,6 @@ def update(num):
 
 ani = animation.FuncAnimation(fig, update, N_anim, interval=1/100, blit=False)
 writer = animation.PillowWriter(fps=25)
-ani.save('C:/Users/Audre/Documents/Ponts/2A/S1/MOPSI/MOPSI_simulation_solar_system/figures/animated/explicit.gif', writer=writer)
+ani.save('C:/Users/Audre/Documents/Ponts/2A/S1/MOPSI/clean_code/MOPSI/Figures/animated/explicit.gif', writer=writer)
 
 plt.show()
-
-
-
-
-
-
-
-"""
-#test avec seulement Saturn
-i=2
-QN = np.zeros((3,Nh))
-for j in range(Nh):
-    QN[0,j] = float(list_CSV[3*i][j])
-    QN[1,j] = float(list_CSV[3*i+1][j])
-    QN[2,j] = float(list_CSV[3*i+2][j])
-    if (QN[0,j]>x_maxi):
-        x_maxi = QN[0,j]
-    elif (QN[0,j]<x_mini):
-        x_mini = QN[0,j]
-    if (QN[1,j]>y_maxi):
-        y_maxi = QN[1,j]
-    elif (QN[1,j]<y_mini):
-        y_mini = QN[1,j]
-    if (QN[2,j]>z_maxi):
-        z_maxi = QN[2,j]
-    elif (QN[2,j]<z_mini):
-        z_mini = QN[2,j]
-
-fig = plt.figure()
-ax = p3.Axes3D(fig)
-
-N_anim = 1000
-
-def update(num, data, line):
-    line.set_data(QN[:2, :num])
-    line.set_3d_properties(QN[2, :num])
-
-
-line, = ax.plot(QN[0,0:1], QN[1,0:1], QN[2,0:1], lw=1, color=colors[i])
-
-# Setting the axes properties
-ax.set_xlim3d([x_mini, x_maxi])
-ax.set_xlabel('X')
-
-ax.set_ylim3d([y_mini, y_maxi])
-ax.set_ylabel('Y')
-
-ax.set_zlim3d([z_mini, z_maxi])
-ax.set_zlabel('Z')
-
-ani = animation.FuncAnimation(fig, update, N_anim, fargs=(QN, line), interval=1, blit=False)
-#ani.save('matplot003.gif', writer='imagemagick')
-plt.show()
-
-
-
-
-
-figure()
-    for i=0:N-1
-        x = QN[1+i*3,:]
-        y = QN[2+i*3,:]
-        z = QN[3+i*3,:]
-        plot3D(x,y,z, label = particules[i+1], color = colors[i+1], linewidth=0.8)
-    end
-    PyPlot.legend()
-
-
-
-
-fig, ax = plt.subplots()
-x, ysin, ycos = [], [], []
-ln1, = plt.plot([], [], 'ro')
-ln2, = plt.plot([], [], 'm*')
-
-def init():
-    ax.set_xlim(0, 2*np.pi)
-    ax.set_ylim(-1, 1)
-
-def update(i):
-    x.append(i)
-    ysin.append(np.sin(i))
-    ycos.append(np.cos(i))
-    ln1.set_data(x, ysin)
-    ln2.set_data(x, ycos)
-
-ani = FuncAnimation(fig, update, np.linspace(0, 2*np.pi, 64), init_func=init)
-plt.show()
-
-writer = PillowWriter(fps=25)
-test1 = os.path.join(path, "demo_sine.gif")
-ani.save(test1, writer=writer)
-"""
