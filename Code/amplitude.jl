@@ -8,7 +8,7 @@ Q0 = initial_positions[1:3*N] #sun and first planet
 P0 = initial_moments[1:3*N]
 
 N_amp = 20 #nb points pour tracer amplitude
-total_time = 100 #doit suffire pour avoir au moins une periode
+total_time = 1000 #doit suffire pour avoir au moins une periode
 list_h = [i*5 for i=1:N_amp]
 list_Nh = zeros(Int, N_amp)
 for i=1:N_amp
@@ -63,7 +63,7 @@ end
 #plot_amplitude_verlet(N_amp)
 
 
-function plot_amplitude_modified_energy(N_amp)
+function plot_amplitude_modified_energy_Symplectic(N_amp)
     list_amplitudes = zeros(N_amp)
     list_log_h = zeros(N_amp)
 
@@ -71,7 +71,7 @@ function plot_amplitude_modified_energy(N_amp)
         h = list_h[i]
         Nh = list_Nh[i]
         QN, PN = Symplectic(h, Nh, N, Q0, P0)
-        H = analytic_EE_modified_energy_H(PN, QN, h, Nh)
+        H = analytic_EE_modified_energy_H(PN, QN, h, Nh,N)
         list_amplitudes[i] = log(maximum(H) - minimum(H))
         list_log_h[i] = log(list_h[i])
     end
@@ -84,15 +84,15 @@ end
 
 
 
-function plot_amplitude_modified_energy_V(N_amp)
+function plot_amplitude_modified_energy_Verlet(N_amp)
     list_amplitudes = zeros(N_amp)
     list_log_h = zeros(N_amp)
 
     for i=1:N_amp
         h = list_h[i]
         Nh = list_Nh[i]
-        QN, PN = Symplectic(h, Nh, N, Q0, P0)
-        H = analytic_modified_energy_H(PN, QN, h, Nh)
+        QN, PN = Verlet(h, Nh, N, Q0, P0)
+        H = analytic_modified_energy_H(PN, QN, h, Nh,N)
         list_amplitudes[i] = log(maximum(H) - minimum(H))
         list_log_h[i] = log(list_h[i])
     end
@@ -104,4 +104,4 @@ function plot_amplitude_modified_energy_V(N_amp)
 end
 
 
-plot_amplitude_modified_energy(N_amp)
+plot_amplitude_modified_energy_Verlet(N_amp)

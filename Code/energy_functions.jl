@@ -1,5 +1,5 @@
 #energy_H computes the total energy of the system
-function energy_H(P,Q,Nh)
+function energy_H(P,Q,Nh,N)
     H=zeros(Nh)
     for k=1:Nh
         for i=1:N
@@ -27,8 +27,8 @@ function U_energy(Q,k,N)
 end
 
 #modified_energy_H
-function modified_energy_H(P,Q,N)
-    H=energy_H(P,Q)
+function modified_energy_H(P,Q,Nh,N)
+    H=energy_H(P,Q,Nh,N)
     Qneg=zeros(3*N,1)
     Pneg=zeros(3*N,1)
     Y=zeros(6*N,1)
@@ -75,7 +75,7 @@ end
 
 #modified energy for Verlet scheme A
 function analytic_modified_energy_H(P,Q,h,Nh,N)
-    H=energy_H(P,Q,N)
+    H=energy_H(P,Q,Nh,N)
     Mneg=zeros(3*N,3*N)
     M=zeros(3*N,3*N)
     V=zeros(3*N)
@@ -120,7 +120,7 @@ end
 
 ##analytic modified Hamiltonien of symplectic
 function analytic_EE_modified_energy_H(P,Q,h,Nh,N)
-    H=energy_H(P,Q,N)
+    H=energy_H(P,Q,Nh,N)
     Mneg=zeros(3*N,3*N)
     M=zeros(3*N,3*N)
     V=zeros(3*N)
@@ -140,8 +140,8 @@ end
 
 
 ##The main fonction of the approximation of modified hamitonien
-function modified_energy_H(P,Q,h,N)
-    H=energy_H(P,Q,N)
+function modified_energy_H(P,Q,h,Nh,N)
+    H=energy_H(P,Q,Nh,N)
     Qneg=zeros(3*N,1)
     Pneg=zeros(3*N,1)
     Y=zeros(6*N,1)
@@ -187,7 +187,7 @@ end
 
 
 ##modified Hamiltonien of Verlet(position first)
-function analytic_modified_energy_H_B(P,Q,N)
+function analytic_modified_energy_H_B(P,Q,Nh,N)
     Mneg=zeros(3*N,3*N)
     M=zeros(3*N,3*N)
     V=zeros(3*N)
@@ -196,7 +196,7 @@ function analytic_modified_energy_H_B(P,Q,N)
     end
     M=Diagonal(V)
     Mneg=inv(M)
-    H=energy_H(P,Q,N)
+    H=energy_H(P,Q,Nh,N)
     for k=1:Nh
         Temp1=-gra_q_H(Q[:,k],N)
         Heiss=zeros(3*N,3*N)

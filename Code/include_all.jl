@@ -14,9 +14,6 @@ include("Verlet_B.jl")
 
 # ENERGY
 include("energy_functions.jl")
-include("amplitude.jl")
 
 # DISPLAY
 include("display_functions.jl")
-include("animated_plot.jl")
-include("energy_plot.jl")
